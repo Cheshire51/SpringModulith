@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: LearnModulith
+  profiles:
+    active: dev
+

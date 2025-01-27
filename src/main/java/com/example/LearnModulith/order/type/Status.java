@@ -6,6 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Status {
-    OPEN("0"), COMPLETED("C");
+    OPEN("O"), COMPLETED("C");
     private final String code;
 }
