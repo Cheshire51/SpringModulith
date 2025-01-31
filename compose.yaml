@@ -5,7 +5,5 @@ services:
       - 'POSTGRES_DB=some-postgres'
       - 'POSTGRES_PASSWORD=mysecretpassword'
       - 'POSTGRES_USER=myuser'
-    volumes:
-      - /Users/phanducminh/Spring_Boot/LearnModulith:/var/lib/postgresql/data
     ports:
       - '5432:5432'

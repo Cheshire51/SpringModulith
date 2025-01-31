@@ -4,6 +4,7 @@ import com.example.LearnModulith.inventory.exposed.InventoryDto;
 import com.example.LearnModulith.inventory.exposed.InventoryService;
 import com.example.LearnModulith.order.dto.InventoryRequestDto;
 import com.example.LearnModulith.order.dto.OrderDto;
+import com.example.LearnModulith.order.dto.OrderPaymentDto;
 import com.example.LearnModulith.order.dto.OrderResponseDto;
 import com.example.LearnModulith.order.type.Status;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class OrderService {
     private final InventoryService inventoryService;
     private final OrderRepository orderRepository;
     private final OrderInventoryRepo orderInventoryRepo;
+    private final OrderEventService orderEventService;
 
     public OrderResponseDto createOrder(OrderDto orderDto) {
 
@@ -39,6 +41,8 @@ public class OrderService {
         //build and persist the orderInventory
         final AtomicLong amount = new AtomicLong();
         buildAndPersistOrderInventory(orderDto, inventoryDtoList, order.getId(), amount);
+
+        orderEventService.createOrder(new OrderPaymentDto(order.getOrderIdentifier(), amount.get()));
         return new OrderResponseDto("Order Currently Processed", 102);
     }
 

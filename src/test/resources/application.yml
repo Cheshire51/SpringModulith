@@ -2,7 +2,7 @@ spring:
   datasource:
     password: ${PASSWORD}
     username: ${USERNAME}
-    url: jdbc:postgres://localhost:60466/some-postgres
+    url: jdbc:postgres://localhost:5432/some-postgres
 
   docker:
     compose:
