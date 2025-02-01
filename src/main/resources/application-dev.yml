@@ -10,3 +10,7 @@ spring:
     events:
       republish-outstanding-events-on-restart: false
 #allow saving events to the table
+
+delete:
+  event:
+    duration: 5000
