@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
 interface InventoryRepository extends CrudRepository<Inventory, Long> {
     Optional<Inventory> getInventoryByName(String inventoryName);
 
