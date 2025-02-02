@@ -15,6 +15,11 @@ public class PaymentEventService {
     @ApplicationModuleListener
     void on (OrderPaymentDto orderPaymentDto) {
         log.info("Order payment received in : {}", orderPaymentDto);
+
+        Payment payment = new Payment();
+        payment.setOrderId(orderPaymentDto.orderId());
+        payment.setAmount(orderPaymentDto.amount());
+        paymentRepository.save(payment);
     }
     //ApplicationModuleListener includes @Async + @TransactionalEventListener
 }

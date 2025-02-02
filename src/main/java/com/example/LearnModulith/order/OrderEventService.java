@@ -1,5 +1,6 @@
 package com.example.LearnModulith.order;
 
+import com.example.LearnModulith.order.dto.EmailDto;
 import com.example.LearnModulith.order.dto.OrderPaymentDto;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +14,12 @@ import org.springframework.stereotype.Service;
 public class OrderEventService {
     private final ApplicationEventPublisher applicationEventPublisher;
     @Transactional
-    public void createOrder(final OrderPaymentDto orderPaymentDto) {
+    public void createOrder(final OrderPaymentDto orderPaymentDto, EmailDto emailDto) {
         log.info("Completing order payment with details: {}", orderPaymentDto);
         applicationEventPublisher.publishEvent(orderPaymentDto);
+
+        log.info("Sending email for order {}", emailDto);
+        applicationEventPublisher.publishEvent(emailDto);
     }
     //Don't know why i have to put @Transactional before publishEvent
 }
