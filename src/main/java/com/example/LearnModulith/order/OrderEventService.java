@@ -1,5 +1,6 @@
 package com.example.LearnModulith.order;
 
+import com.example.LearnModulith.order.dto.CompleteOrder;
 import com.example.LearnModulith.order.dto.EmailDto;
 import com.example.LearnModulith.order.dto.OrderPaymentDto;
 import jakarta.transaction.Transactional;
@@ -19,6 +20,15 @@ public class OrderEventService {
         applicationEventPublisher.publishEvent(orderPaymentDto);
 
         log.info("Sending email for order {}", emailDto);
+        applicationEventPublisher.publishEvent(emailDto);
+    }
+
+    @Transactional
+    public void completePayment(CompleteOrder completeOrder, EmailDto emailDto) {
+        log.info("Attempting to complete payment: {}", completeOrder);
+        applicationEventPublisher.publishEvent(completeOrder);
+
+        log.info("Completing payment Email: {}", emailDto);
         applicationEventPublisher.publishEvent(emailDto);
     }
     //Don't know why i have to put @Transactional before publishEvent

@@ -1,5 +1,7 @@
 package com.example.LearnModulith.order;
 
+import com.example.LearnModulith.order.dto.CompleteOrder;
+import com.example.LearnModulith.order.dto.CompleteOrderResponse;
 import com.example.LearnModulith.order.dto.OrderDto;
 import com.example.LearnModulith.order.dto.OrderResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +22,11 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<OrderResponseDto> createOrder(@RequestBody OrderDto orderDto) {
         return new ResponseEntity<>(orderService.createOrder(orderDto), HttpStatus.OK);
+    }
+
+    @PostMapping("/complete")
+    public ResponseEntity<CompleteOrderResponse> completeOrder(@RequestBody CompleteOrder completeOrder)
+    {
+        return new ResponseEntity<CompleteOrderResponse>(orderService.completePayment(completeOrder), HttpStatus.OK);
     }
 }

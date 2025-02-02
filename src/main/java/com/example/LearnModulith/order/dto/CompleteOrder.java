@@ -4,7 +4,7 @@ import com.example.LearnModulith.eventaction.action.Action;
 import com.example.LearnModulith.eventaction.action.CustomEventMarker;
 import org.jmolecules.event.types.DomainEvent;
 
-@CustomEventMarker(eventAction = Action.EMAIL)
-public record EmailDto (String email, String customerName, String orderIdentifier, long totalAmount, boolean orderCompleted)
-    implements DomainEvent {
+
+@CustomEventMarker(eventAction = Action.COMPLETE_PAYMENT)
+public record CompleteOrder(String orderIdentifier, boolean paymentComplete) implements DomainEvent {
 }
