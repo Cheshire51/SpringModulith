@@ -4,6 +4,7 @@ import com.example.LearnModulith.order.dto.CompleteOrder;
 import com.example.LearnModulith.order.dto.CompleteOrderResponse;
 import com.example.LearnModulith.order.dto.OrderDto;
 import com.example.LearnModulith.order.dto.OrderResponseDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,10 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public ResponseEntity<OrderResponseDto> createOrder(@RequestBody OrderDto orderDto) {
+    public ResponseEntity<OrderResponseDto> createOrder(@RequestBody @Valid OrderDto orderDto) {
         return new ResponseEntity<>(orderService.createOrder(orderDto), HttpStatus.OK);
     }
-
+    //@Value must be placed after @RequestBody
     @PostMapping("/complete")
     public ResponseEntity<CompleteOrderResponse> completeOrder(@RequestBody CompleteOrder completeOrder)
     {
