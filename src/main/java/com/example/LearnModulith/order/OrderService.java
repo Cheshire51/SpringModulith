@@ -1,5 +1,6 @@
 package com.example.LearnModulith.order;
 
+import com.example.LearnModulith.exception.ModulithException;
 import com.example.LearnModulith.inventory.exposed.InventoryDto;
 import com.example.LearnModulith.inventory.exposed.InventoryService;
 import com.example.LearnModulith.order.dto.*;
@@ -48,7 +49,7 @@ public class OrderService {
 
     public CompleteOrderResponse completePayment(CompleteOrder completeOrder) {
         Optional<Order> optionalOrder = orderRepository.findOrderByOrderIdentifier(completeOrder.orderIdentifier());
-        if (optionalOrder.isEmpty()) throw new RuntimeException("Order not found");
+        if (optionalOrder.isEmpty()) throw new ModulithException("Order not found");
         Order order = optionalOrder.get();
         final long amount = orderInventoryRepo.orderInventoryAmount(order.getId());
         EmailDto emailDto = new EmailDto (order.getCustomerEmail(), order.getCustomerName(),

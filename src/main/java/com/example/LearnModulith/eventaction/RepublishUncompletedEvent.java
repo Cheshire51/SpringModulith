@@ -1,6 +1,7 @@
 package com.example.LearnModulith.eventaction;
 
 import com.example.LearnModulith.eventaction.action.Action;
+import com.example.LearnModulith.exception.ModulithException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
@@ -41,7 +42,7 @@ public class RepublishUncompletedEvent {
                 );
                 //completedEventPublications.deletePublicationsOlderThan(Duration.ofHours(env.getProperty("delete.event.duration", Long.class, 100L)));
             } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
+                throw new ModulithException(e.getMessage());
             }
 
         }

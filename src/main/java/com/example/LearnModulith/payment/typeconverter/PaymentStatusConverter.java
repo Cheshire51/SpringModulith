@@ -1,5 +1,6 @@
 package com.example.LearnModulith.payment.typeconverter;
 
+import com.example.LearnModulith.exception.ModulithException;
 import com.example.LearnModulith.payment.type.PaymentStatus;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
@@ -11,7 +12,7 @@ public class PaymentStatusConverter implements AttributeConverter<PaymentStatus,
 
     @Override
     public String convertToDatabaseColumn(PaymentStatus paymentStatus) {
-        if (paymentStatus == null) throw new NullPointerException("PaymentStatus can not be null");
+        if (paymentStatus == null) throw new ModulithException("PaymentStatus can not be null");
         return paymentStatus.getCode();
     }
 
@@ -20,6 +21,6 @@ public class PaymentStatusConverter implements AttributeConverter<PaymentStatus,
         if (code == null) throw new NullPointerException("PaymentStatus can not be null");
         return Arrays.stream(PaymentStatus.values())
                 .filter(s->s.getCode().equalsIgnoreCase(code))
-                .findFirst().orElseThrow(()->new IllegalArgumentException("Invalid PaymentStatus code: " + code));
+                .findFirst().orElseThrow(()->new ModulithException("Invalid PaymentStatus code: " + code));
     }
 }

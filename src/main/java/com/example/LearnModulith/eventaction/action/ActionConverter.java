@@ -1,5 +1,6 @@
 package com.example.LearnModulith.eventaction.action;
 
+import com.example.LearnModulith.exception.ModulithException;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
@@ -10,7 +11,7 @@ public class ActionConverter implements AttributeConverter<Action, String> {
 
     @Override
     public String convertToDatabaseColumn(Action action) {
-        if (action == null) throw new RuntimeException("action is null");
+        if (action == null) throw new ModulithException("action is null");
         return action.getCode();
     }
 
@@ -19,6 +20,6 @@ public class ActionConverter implements AttributeConverter<Action, String> {
         if (s == null) throw new RuntimeException("code is null");
         return Arrays.stream(Action.values())
                 .filter(action-> action.getCode().equalsIgnoreCase(s))
-                .findFirst().orElseThrow(()->new RuntimeException("action not found"));
+                .findFirst().orElseThrow(()->new ModulithException("action not found"));
     }
 }

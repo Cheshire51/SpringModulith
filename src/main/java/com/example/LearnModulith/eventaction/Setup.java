@@ -2,6 +2,7 @@ package com.example.LearnModulith.eventaction;
 
 import com.example.LearnModulith.eventaction.action.Action;
 import com.example.LearnModulith.eventaction.action.CustomEventMarker;
+import com.example.LearnModulith.exception.ModulithException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -20,7 +21,7 @@ public class Setup implements ApplicationRunner {
     private final EventActionRepository eventActionRepository;
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) throws ModulithException {
         ClassPathScanningCandidateComponentProvider provider = new
                 ClassPathScanningCandidateComponentProvider(false);
 

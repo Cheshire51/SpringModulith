@@ -1,5 +1,6 @@
 package com.example.LearnModulith.inventory;
 
+import com.example.LearnModulith.exception.ModulithException;
 import com.example.LearnModulith.inventory.exposed.InventoryDto;
 import com.example.LearnModulith.inventory.exposed.InventoryService;
 import com.example.LearnModulith.inventory.exposed.InventoryUtil;
@@ -17,7 +18,7 @@ public class InventoryServiceImpl implements InventoryService {
     public InventoryDto fetchInventoryByName(String name) {
         return inventoryRepository.getInventoryByName(name)
                 .map(InventoryUtil::mapInventoryDto)
-                .orElseThrow(() -> new IllegalArgumentException("Inventory name not found"));
+                .orElseThrow(() -> new ModulithException("Inventory name not found"));
     }
 
     @Override
