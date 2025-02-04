@@ -54,7 +54,7 @@ public class RepublishUncompletedEvent {
     }
 
     //@Scheduled(cron = "0 0 0 * * *")
-    @Scheduled(fixedRate = 10L, timeUnit = TimeUnit.SECONDS)
+    //@Scheduled(fixedRate = 10L, timeUnit = TimeUnit.SECONDS)
     public  void republishAll()
     {
         log.info("Republishing all events");
