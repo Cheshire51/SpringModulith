@@ -14,3 +14,8 @@ spring:
 delete:
   event:
     duration: 5000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
