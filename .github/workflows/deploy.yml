@@ -8,12 +8,13 @@ jobs:
   build-section:
     environment: action
     runs-on: ubuntu-latest
-
+    env:
+      SOME_DATA: some-data
     steps:
       - name: Print something
         run: echo "I am printing something"
       - name: Show host environment variables
-        run: echo "${{env.ACTUATOR_EXPOSED_ENDPOINTS}}"
+        run: echo "some data ${{env.SOME_DATA}}actuator endpoints ${{vars.ACTUATOR_EXPOSED_ENDPOINTS}}"
 
 
 
