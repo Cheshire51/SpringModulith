@@ -1,0 +1,17 @@
+name: build push image for deployment
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-section:
+    environment: action
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print something
+        run: echo "I am printing something"
+
+
+
