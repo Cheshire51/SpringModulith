@@ -11,13 +11,22 @@ services:
     networks:
       modulith-network:
 
+
   modulith-service:
-    container_name: service
+    container_name: modulith_service
     image: modulith:1.0
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
-      - SPRING_PROFILES_ACTIVE:dev
+      SPRING_PROFILE: "docker"
+      MODULITH_USERNAME: "myuser"
+      MODULITH_PASSWORD: "mysecretpassword"
+      MODULITH_HOST: "postgres"
+      MODULITH_PORT: 5432
+      MODULITH_DB_NAME: "some-postgres"
+      DELETE_EVENT_DURATION: 4000
+      ACTUATOR_EXPOSED_ENDPOINTS: "health, modulith"
+      SERVER_PORT: 8081
     depends_on:
       - postgres
 

@@ -31,4 +31,4 @@ COPY --from=build application/dependencies/ ./
 COPY --from=build application/spring-boot-loader/ ./
 COPY --from=build application/snapshot-dependencies/ ./
 COPY --from=build application/application/ ./
-ENTRYPOINT ["java", "-Duser.timezone = Vietname/Hanoi", "Dspring.profiles.active=$SPRING_PROFILE", "org.springframework.boot.loader.launch.JarLauncher"]
+ENTRYPOINT ["java", "-Duser.timezone = Vietname/Hanoi", "-Dspring.profiles.active=${SPRING_PROFILE}", "org.springframework.boot.loader.launch.JarLauncher"]
