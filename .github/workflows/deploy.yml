@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Print something
         run: echo "I am printing something"
+      - name: Show host environment variables
+        run: echo "${{env.ACTUATOR_EXPOSED_ENDPOINTS}}"
 
 
 
