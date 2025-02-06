@@ -15,7 +15,7 @@ jobs:
       - name: Print something
         run: echo "I am printing something"
       - name: Show host environment variables
-        run: echo "some data ${{env.SOME_DATA}}actuator endpoints ${{vars.ACTUATOR_EXPOSED_ENDPOINTS}}"
+        run: echo "some data ${{env.SOME_DATA}} actuator endpoints ${{vars.ACTUATOR_EXPOSED_ENDPOINTS}}"
       - name: print job env
         env:
           step_level_env: stepEnv
