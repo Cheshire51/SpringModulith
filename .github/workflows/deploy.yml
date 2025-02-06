@@ -25,6 +25,7 @@ jobs:
   build-job-section:
     environment: action
     runs-on: ubuntu-latest
+
     container: postgres
     services:
       postgres:
@@ -35,6 +36,7 @@ jobs:
           POSTGRES_USER: ${{secrets.MODULITH_USERNAME}}
         ports:
           - '5432:5432'
+
     steps:
       - name: Get Code
         uses: actions/checkout@v4
@@ -44,6 +46,11 @@ jobs:
           distribution: "corretto"
           java-version: "23"
           cache: maven
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.8.2
       - name: Output Info
         run: ls
       - name: Build with Maven
