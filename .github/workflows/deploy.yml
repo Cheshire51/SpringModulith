@@ -53,6 +53,19 @@ jobs:
           maven-version: 3.8.2
       - name: Output Info
         run: ls
+
+      - name: show host environment variables
+        run: echo "host ${{ vars.MODULITH_HOST}}  db name  ${{vars.MODULITH_DB_NAME}}"
+
+      - name: run maven test
+        env:
+          MODULITH_USERNAME: ${{secrets.MODULITH_USERNAME}}
+          MODULITH_PASSWORD: ${{secrets.MODULITH_PASSWORD}}
+          MODULITH_HOST: ${{vars.MODULITH_HOST}}
+          MODULITH_PORT: ${{vars.MODULITH_PORT}}
+          MODULITH_DB_NAME: ${{vars.MODULITH_DB_NAME}}
+        run: mvn clean test
+
       - name: Build with Maven
         run: mvn clean package -Dspring-boot.run.profiles=${{vars.SPRING_PROFILE}}
       - name: list files
@@ -62,6 +75,7 @@ jobs:
 
 
   push-image-section:
+    needs: build-job-section
     runs-on: ubuntu-latest
     steps:
       - name: print something
