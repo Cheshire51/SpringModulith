@@ -75,7 +75,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: spring-modulith-artifact
-          path:
+          path: |
             target/*.jar
             Dockerfile
           overwrite: 'true'
