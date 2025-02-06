@@ -6,7 +6,7 @@ on:
 env:
   job_env: ssss
 jobs:
-  build-section:
+  sample-job-section:
     environment: action
     runs-on: ubuntu-latest
     env:
@@ -20,6 +20,22 @@ jobs:
         env:
           step_level_env: stepEnv
         run: echo "job env ${{env.job_env}}   step env ${{env.step_level_env}}"
+
+
+  build-job-section:
+    environment: action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4
+      - name: Set up JDK 23
+        uses: actions/setup-java@v4
+        with:
+          distribution: "corretto"
+          java-version: "23"
+          cache: maven
+
+
   push-image-section:
     runs-on: ubuntu-latest
     steps:
