@@ -87,4 +87,12 @@ jobs:
       - name: print something
         run: echo "job env ${{env.job_env}}"
 
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: spring-modulith-artifact
+
+      - name: Output downloaded files
+        run: ls && ls target/**
+
 
