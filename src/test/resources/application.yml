@@ -1,8 +1,15 @@
 spring:
   datasource:
-    password: ${PASSWORD}
-    username: ${USERNAME}
-    url: jdbc:postgresql://localhost:5432/some-postgres
+    username: ${MODULITH_USERNAME:myuser}
+    password: ${MODULITH_PASSWORD:mysecretpassword}
+    url: jdbc:postgresql://${MODULITH_HOST}:${MODULITH_PORT:5432}/${MODULITH_DB_NAME}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
 
   docker:
     compose:
